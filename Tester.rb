@@ -4,12 +4,9 @@ class Tester
   def Test
     clock = BallClock.new(30)
     puts clock.inspect
-    #puts clock.to_a
-    (60*24).times do |x|
-      clock.Step
-    end
+    #1 day
+    (60*24).times { |x| clock.Step }
     puts clock.inspect
-    #puts clock.to_a
   end
 end
 
