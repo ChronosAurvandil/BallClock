@@ -35,4 +35,33 @@ class BallClock
       @OneMinutes << nextBall
     end
   end
+  
+  def self.Simulate(num)
+    clock = BallClock.new(num)
+    d0 = clock.to_a
+    #day 1
+    (60*24).times { |x| clock.Step }
+    d1 = clock.to_a
+    #day 2...
+    pattern = Array.new(d1)
+    newer = d1
+    iter = 1
+    while (newer != d0)
+      old = newer
+      newer = Array.new(num)
+      (old.length).times { |i|
+        slot = pattern[i-1]
+        ball = old[slot-1]
+        newer[i-1] = ball
+      }
+      #puts 1+x
+      #print newer
+      #puts "\n"
+      iter += 1
+    end
+    if (newer == d0)
+      puts "WINNER!!!!"
+      puts iter
+    end
+  end
 end
